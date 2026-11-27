@@ -1,8 +1,8 @@
 
 import { useState } from 'react'
 
-const SERVER_IP = 'YOUR-SERVER-IP'
-const DISCORD_URL = 'https://discord.gg/YOUR-LINK'
+const SERVER_IP = 'Lexturasmp.minevex.site'
+const DISCORD_URL = 'https://discord.gg/HAkg5a6cK'
 
 const ranks = [
   { name: 'VIP', price: '₱50', color: '#37bfff', icon: '⚡', perks: ['Exclusive VIP rank', 'Special rewards', 'VIP perks'] },
