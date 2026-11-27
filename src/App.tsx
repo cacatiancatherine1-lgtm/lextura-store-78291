@@ -73,10 +73,7 @@ export default function App() {
         }
 
         .links { display: flex; gap: 22px; flex-wrap: wrap; }
-        .links a {
-          color: #c9b8dc;
-          text-decoration: none;
-        }
+        .links a { color: #c9b8dc; text-decoration: none; }
 
         .hero {
           text-align: center;
@@ -107,15 +104,8 @@ export default function App() {
           border: 1px solid #8651b4;
         }
 
-        .primary {
-          background: #9149c8;
-          color: white;
-        }
-
-        .secondary {
-          background: #1a1422;
-          color: #e4caff;
-        }
+        .primary { background: #9149c8; color: white; }
+        .secondary { background: #1a1422; color: #e4caff; }
 
         .section {
           padding: 65px 6%;
@@ -123,10 +113,7 @@ export default function App() {
           margin: auto;
         }
 
-        .section h2 {
-          text-align: center;
-          font-size: 32px;
-        }
+        .section h2 { text-align: center; font-size: 32px; }
 
         .sub {
           text-align: center;
@@ -160,10 +147,7 @@ export default function App() {
           letter-spacing: 3px;
         }
 
-        .rank h3 {
-          font-size: 38px;
-          margin: 20px 0;
-        }
+        .rank h3 { font-size: 38px; margin: 20px 0; }
 
         .secure {
           color: #c58aff;
@@ -261,6 +245,22 @@ export default function App() {
           font-size: 25px;
         }
 
+        .payment-brand {
+          text-align: center;
+          font-size: 25px;
+          font-weight: 900;
+          letter-spacing: 3px;
+          color: #b875ed;
+          margin: 15px 0 8px;
+        }
+
+        .payment-subtitle {
+          text-align: center;
+          color: #999;
+          font-size: 12px;
+          letter-spacing: 2px;
+        }
+
         .close {
           position: absolute;
           right: 18px;
@@ -304,10 +304,7 @@ export default function App() {
           margin-top: 20px;
         }
 
-        .pay:disabled {
-          opacity: .4;
-          cursor: not-allowed;
-        }
+        .pay:disabled { opacity: .4; cursor: not-allowed; }
 
         .checkout-box {
           background: #0e0d12;
@@ -435,10 +432,14 @@ export default function App() {
 
             {!checkout ? (
               <>
-                <h2>SECURE CHECKOUT</h2>
+                <div className="payment-brand">LEXTURASMP</div>
+                <p className="payment-subtitle">SECURE PAYMENT GATEWAY</p>
+                <h2>LEXTURASMP PAYMENT</h2>
+
                 <p style={{textAlign:'center', color:'#c6b3d7'}}>
                   {selectedRank.name} RANK
                 </p>
+
                 <div className="checkout-box">
                   <p>ORDER TOTAL</p>
                   <div className="checkout-price">
@@ -473,7 +474,10 @@ export default function App() {
               </>
             ) : (
               <>
-                <h2>PAYMENT CHECKOUT</h2>
+                <div className="payment-brand">LEXTURASMP</div>
+                <p className="payment-subtitle">OFFICIAL PAYMENT PORTAL</p>
+                <h2>PAYMENT DETAILS</h2>
+
                 <p style={{textAlign:'center',color:'#c6b3d7'}}>
                   {selectedRank.name} - {payment}
                 </p>
@@ -502,4 +506,4 @@ export default function App() {
       )}
     </div>
   )
-}
+      }
