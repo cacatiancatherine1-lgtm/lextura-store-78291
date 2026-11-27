@@ -16,6 +16,18 @@ const ranks = [
   { name: 'CUSTOM RANK', price: '₱160', color: '#55ff9a', icon: '✨', perks: ['Custom rank', 'Custom name and style', 'Special privileges'] },
 ]
 
+const localPayments = [
+  'GCash', 'Maya', 'GoTyme', 'BPI', 'BDO',
+  'UnionBank', 'Landbank', 'RCBC', 'Metrobank',
+  'Cebuana Lhuillier', 'PalawanPay', 'Coins.ph', 'QR Ph'
+]
+
+const internationalPayments = [
+  'PayPal', 'Visa', 'Mastercard', 'American Express',
+  'Skrill', 'Wise', 'Payoneer', 'Stripe',
+  'Apple Pay', 'Google Pay'
+]
+
 export default function App() {
   const [copied, setCopied] = useState(false)
 
@@ -40,7 +52,7 @@ export default function App() {
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         .nav { display:flex; justify-content:space-between; align-items:center; padding:18px 6%; border-bottom:1px solid #142c53; background:#050b1b; position:sticky; top:0; z-index:5; }
-        .links { display:flex; gap:22px; }
+        .links { display:flex; gap:22px; flex-wrap:wrap; }
         .links a { color:#b6c8e8; text-decoration:none; }
         .hero { padding:80px 6% 60px; text-align:center; background:radial-gradient(ellipse at center,#103c81 0%,#07152e 48%,#030817 80%); }
         .hero h1 { font-size:clamp(38px,8vw,78px); margin:15px 0; font-weight:900; letter-spacing:3px; }
@@ -58,6 +70,10 @@ export default function App() {
         .rank li { color:#afc5e7; margin:12px 0; }
         .rank button { width:100%; margin-top:15px; }
         .join { text-align:center; border:1px solid #174a85; border-radius:16px; background:#07152c; padding:30px; }
+        .payments { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
+        .payment { background:linear-gradient(145deg,#10264b,#071329); border:1px solid #245080; padding:20px 12px; border-radius:12px; text-align:center; font-weight:bold; color:#d9edff; }
+        .payment:hover { border-color:#35bfff; transform:translateY(-3px); }
+        .payment-note { text-align:center; color:#91aaca; line-height:1.7; margin-top:25px; }
         .footer { text-align:center; color:#6e87ac; border-top:1px solid #15294a; padding:25px; }
         @media(max-width:600px) {
           .nav { padding:15px 4%; }
@@ -71,6 +87,7 @@ export default function App() {
         <strong style={{ color: '#46c8ff', fontSize: 20 }}>⚡ LexturaSMP</strong>
         <nav className="links">
           <a href="#ranks">Ranks</a>
+          <a href="#payments">Payments</a>
           <a href="#join">Join</a>
           <a href="#faq">FAQ</a>
         </nav>
@@ -117,6 +134,46 @@ export default function App() {
         </div>
       </section>
 
+      <section id="payments" className="section">
+        <h2>💳 PAYMENT METHODS</h2>
+        <p className="sub">Choose from our supported payment options.</p>
+
+        <h2 style={{ color: '#42bdff', fontSize: 24, marginBottom: 25 }}>
+          🇵🇭 Philippine Payment Methods
+        </h2>
+        <div className="payments">
+          {localPayments.map((method) => (
+            <div className="payment" key={method}>
+              💠 {method}
+            </div>
+          ))}
+        </div>
+
+        <div style={{ height: 45 }} />
+
+        <h2 style={{ color: '#b58cff', fontSize: 24, marginBottom: 25 }}>
+          🌎 International Payment Methods
+        </h2>
+        <div className="payments">
+          {internationalPayments.map((method) => (
+            <div className="payment" key={method}>
+              🌐 {method}
+            </div>
+          ))}
+        </div>
+
+        <p className="payment-note">
+          To purchase a rank, contact our staff on Discord for payment
+          instructions and confirmation of available payment methods.
+          Not all listed methods are currently enabled.
+        </p>
+        <div style={{ textAlign: 'center', marginTop: 25 }}>
+          <a className="btn primary" href={DISCORD_URL}>
+            CONTACT US FOR PAYMENT
+          </a>
+        </div>
+      </section>
+
       <section id="join" className="section">
         <div className="join">
           <h2 style={{ color: '#42bdff' }}>JOIN LEXTURASMP</h2>
@@ -134,6 +191,8 @@ export default function App() {
         <div className="rank">
           <h3>How do I buy a rank?</h3>
           <p style={{ color: '#a6bfdf' }}>Choose your rank and click Buy. You will be redirected to our Discord.</p>
+          <h3>What payment methods are available?</h3>
+          <p style={{ color: '#a6bfdf' }}>Contact our staff on Discord to confirm which payment methods are currently accepted.</p>
           <h3>Can Java and Bedrock players join?</h3>
           <p style={{ color: '#a6bfdf' }}>Yes! Both Java and Bedrock players are welcome.</p>
         </div>
