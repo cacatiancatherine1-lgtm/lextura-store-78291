@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 
 const SERVER_IP = 'Lexturasmp.minevex.site'
@@ -30,6 +29,12 @@ export default function App() {
     } catch {
       alert('Server IP: ' + SERVER_IP)
     }
+  }
+
+  function openPayment(rank) {
+    setSelectedRank(rank)
+    setPayment('')
+    setCheckout(false)
   }
 
   function closePayment() {
@@ -214,8 +219,6 @@ export default function App() {
           color: #92839e;
         }
 
-        /* PAYMENT WINDOW */
-
         .overlay {
           position: fixed;
           inset: 0;
@@ -356,9 +359,16 @@ export default function App() {
         </p>
         <a className="btn primary" href="#ranks">VIEW RANKS</a>
         {' '}
-        <a className="btn secondary" href={DISCORD_URL}>JOIN DISCORD</a>
+        <a
+          className="btn secondary"
+          href={DISCORD_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          JOIN DISCORD
+        </a>
         <div style={{marginTop:30}}>
-          <button className="btn secondary" onClick={copyIP}>
+          <button type="button" className="btn secondary" onClick={copyIP}>
             {copied ? 'IP COPIED' : 'COPY SERVER IP'}
           </button>
         </div>
@@ -381,11 +391,12 @@ export default function App() {
                 ))}
               </ul>
               <button
+                type="button"
                 className="buy"
-                onClick={() => {
-                  setSelectedRank(rank)
-                  setPayment('')
-                  setCheckout(false)
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  openPayment(rank)
                 }}
               >
                 BUY {rank.name}
@@ -399,11 +410,16 @@ export default function App() {
         <div className="join">
           <h2>JOIN LEXTURASMP</h2>
           <p>Java and Bedrock players are welcome!</p>
-          <button className="btn primary" onClick={copyIP}>
+          <button type="button" className="btn primary" onClick={copyIP}>
             {copied ? 'COPIED' : 'COPY SERVER IP'}
           </button>
           <p>{SERVER_IP}</p>
-          <a className="btn secondary" href={DISCORD_URL}>
+          <a
+            className="btn secondary"
+            href={DISCORD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             JOIN DISCORD
           </a>
         </div>
@@ -423,12 +439,19 @@ export default function App() {
         © 2026 LexturaSMP. All rights reserved.
       </footer>
 
-      {/* PAYMENT MODAL */}
-
       {selectedRank && (
         <div className="overlay" onClick={closePayment}>
-          <div className="modal" onClick={e => e.stopPropagation()}>
-            <button className="close" onClick={closePayment}>×</button>
+          <div
+            className="modal"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="close"
+              onClick={closePayment}
+            >
+              ×
+            </button>
 
             {!checkout ? (
               <>
@@ -453,6 +476,7 @@ export default function App() {
 
                 {['GCash', 'Maya'].map(method => (
                   <button
+                    type="button"
                     key={method}
                     className={
                       'payment-option ' +
@@ -465,6 +489,7 @@ export default function App() {
                 ))}
 
                 <button
+                  type="button"
                   className="pay"
                   disabled={!payment}
                   onClick={() => setCheckout(true)}
@@ -496,7 +521,11 @@ export default function App() {
                   No payment has been made yet.
                 </p>
 
-                <button className="pay" onClick={() => setCheckout(false)}>
+                <button
+                  type="button"
+                  className="pay"
+                  onClick={() => setCheckout(false)}
+                >
                   BACK TO PAYMENT METHODS
                 </button>
               </>
@@ -506,4 +535,5 @@ export default function App() {
       )}
     </div>
   )
-      }
+                    }
+
