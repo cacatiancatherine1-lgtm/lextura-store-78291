@@ -1,12 +1,13 @@
+
 import { useState } from 'react'
 
-const SERVER_IP = 'LexturaSMP.minevex.site:35407'
+const SERVER_IP = 'Lexturasmp.minevex.site'
 const DISCORD_URL = 'https://discord.gg/HAkg5a6cK'
 
 const ranks = [
-  { name: 'VIP', price: '₱50', icon: '⚡', color: '#37b7ff' },
-  { name: 'ELITE', price: '₱100', icon: '💎', color: '#a070ff' },
-  { name: 'LEGEND', price: '₱200', icon: '👑', color: '#ffc857' }
+  { name: 'VIP', price: '₱50', color: '#37bfff', icon: '⚡', perks: ['Exclusive VIP rank', 'Special rewards', 'VIP perks'] },
+  { name: 'ELITE', price: '₱100', color: '#8b70ff', icon: '💎', perks: ['Elite rank', 'Better rewards', 'Exclusive perks'] },
+  { name: 'LEGEND', price: '₱200', color: '#ffc857', icon: '👑', perks: ['Legend rank', 'Premium rewards', 'Special privileges'] },
 ]
 
 export default function App() {
@@ -18,59 +19,123 @@ export default function App() {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      alert(SERVER_IP)
+      alert('Please copy the IP: ' + SERVER_IP)
     }
   }
 
   return (
-    <div style={{ background: '#080d1b', color: 'white', minHeight: '100vh', fontFamily: 'Arial' }}>
-      <nav style={{ padding: 25, display: 'flex', justifyContent: 'space-between', background: '#101a32' }}>
-        <strong style={{ color: '#37b7ff', fontSize: 23 }}>⚡ LexturaSMP</strong>
-        <a href={DISCORD_URL} style={{ color: 'white' }}>Discord</a>
-      </nav>
+    <div style={{
+      minHeight: '100vh',
+      background: '#030817',
+      color: '#eaf4ff',
+      fontFamily: 'Arial, sans-serif',
+    }}>
+      <style>{`
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        .nav { display:flex; justify-content:space-between; align-items:center; padding:18px 6%; border-bottom:1px solid #142c53; background:#050b1b; position:sticky; top:0; z-index:5; }
+        .links { display:flex; gap:22px; }
+        .links a { color:#b6c8e8; text-decoration:none; }
+        .hero { padding:80px 6% 60px; text-align:center; background:radial-gradient(ellipse at center,#103c81 0%,#07152e 48%,#030817 80%); }
+        .hero h1 { font-size:clamp(38px,8vw,78px); margin:15px 0; font-weight:900; letter-spacing:3px; }
+        .hero p { color:#a9bfdf; font-size:17px; line-height:1.7; max-width:650px; margin:15px auto 30px; }
+        .btn { display:inline-block; padding:15px 22px; border-radius:9px; text-decoration:none; font-weight:bold; border:1px solid #238bff; cursor:pointer; }
+        .primary { color:white; background:linear-gradient(110deg,#126bff,#22c9ff); }
+        .secondary { color:#bdeaff; background:#07152d; }
+        .section { padding:65px 6%; max-width:1200px; margin:auto; }
+        .section h2 { text-align:center; font-size:32px; margin-bottom:12px; }
+        .sub { text-align:center; color:#90a9ce; margin-bottom:35px; }
+        .ranks { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; }
+        .rank { padding:25px; border:1px solid #1b3e70; background:linear-gradient(160deg,#0c1b38,#060d1e); border-radius:15px; }
+        .rank h3 { font-size:25px; margin:12px 0; }
+        .price { font-size:32px; font-weight:bold; margin:20px 0; }
+        .rank li { color:#afc5e7; margin:12px 0; }
+        .rank button { width:100%; margin-top:15px; }
+        .join { text-align:center; border:1px solid #174a85; border-radius:16px; background:#07152c; padding:30px; }
+        .footer { text-align:center; color:#6e87ac; border-top:1px solid #15294a; padding:25px; }
+        @media(max-width:600px) {
+          .nav { padding:15px 4%; }
+          .links { gap:12px; font-size:13px; }
+          .hero { padding-top:55px; }
+          .section { padding:50px 5%; }
+        }
+      `}</style>
 
-      <main style={{ textAlign: 'center', padding: '100px 20px' }}>
-        <p style={{ color: '#37b7ff', letterSpacing: 4 }}>WELCOME TO</p>
-        <h1 style={{ fontSize: 'clamp(40px, 8vw, 75px)' }}>
-          LEXTURA<span style={{ color: '#37b7ff' }}>SMP</span>
-        </h1>
-        <p style={{ color: '#b7c5df', lineHeight: 1.8 }}>
-          Explore. Survive. Build your empire.
-          <br />Join our Minecraft SMP community!
+      <header className="nav">
+        <strong style={{ color: '#46c8ff', fontSize: 20 }}>⚡ LexturaSMP</strong>
+        <nav className="links">
+          <a href="#ranks">Ranks</a>
+          <a href="#join">Join</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </header>
+
+      <section className="hero">
+        <div style={{ fontSize: 80 }}>⚔️</div>
+        <p style={{ color: '#43bfff', fontWeight: 'bold', letterSpacing: 4 }}>
+          THE ULTIMATE SMP EXPERIENCE
         </p>
+        <h1>LEXTURA<span style={{ color: '#35bfff' }}>SMP</span></h1>
+        <p>
+          Welcome to LexturaSMP! Unlock exclusive ranks, get rewards,
+          and experience your Minecraft adventure like never before.
+        </p>
+        <a className="btn primary" href="#ranks">✦ VIEW RANKS</a>
+        {' '}
+        <a className="btn secondary" href={DISCORD_URL}>JOIN DISCORD</a>
+        <div style={{ marginTop: 35 }}>
+          <button className="btn secondary" onClick={copyIP}>
+            🎮 {copied ? 'IP COPIED!' : 'COPY SERVER IP: ' + SERVER_IP}
+          </button>
+        </div>
+      </section>
 
-        <button onClick={copyIP} style={{ padding: 16, margin: 10, background: '#168cff', color: 'white', border: 0, borderRadius: 10, fontWeight: 'bold' }}>
-          {copied ? 'COPIED!' : '📋 COPY SERVER IP'}
-        </button>
-
-        <a href={DISCORD_URL} target="_blank" rel="noreferrer" style={{ display: 'inline-block', padding: 16, margin: 10, background: '#5865F2', color: 'white', borderRadius: 10, textDecoration: 'none', fontWeight: 'bold' }}>
-          JOIN DISCORD
-        </a>
-
-        <p style={{ marginTop: 30, color: '#37b7ff' }}>SERVER IP</p>
-        <h3>{SERVER_IP}</h3>
-      </main>
-
-      <section style={{ padding: 30, textAlign: 'center' }}>
-        <h2>OUR <span style={{ color: '#37b7ff' }}>RANKS</span></h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 20 }}>
-          {ranks.map(rank => (
-            <div key={rank.name} style={{ background: '#14213d', border: `1px solid ${rank.color}`, borderRadius: 15, padding: 25, width: 220 }}>
-              <h1>{rank.icon}</h1>
-              <h2 style={{ color: rank.color }}>{rank.name}</h2>
-              <h2>{rank.price}</h2>
-              <p>Exclusive rank rewards</p>
-              <a href={DISCORD_URL} style={{ color: 'white', background: '#168cff', padding: 12, display: 'inline-block', borderRadius: 8, textDecoration: 'none' }}>GET RANK</a>
+      <section id="ranks" className="section">
+        <h2>✦ OUR RANKS ✦</h2>
+        <p className="sub">Choose your rank and upgrade your adventure.</p>
+        <div className="ranks">
+          {ranks.map((rank) => (
+            <div className="rank" key={rank.name} style={{ borderColor: rank.color }}>
+              <div style={{ fontSize: 38 }}>{rank.icon}</div>
+              <h3 style={{ color: rank.color }}>{rank.name}</h3>
+              <div className="price">{rank.price}</div>
+              <small style={{ color: '#8299bb' }}>One-time purchase</small>
+              <ul>
+                {rank.perks.map((perk) => <li key={perk}>{perk}</li>)}
+              </ul>
+              <a className="btn secondary" href={DISCORD_URL} style={{ display: 'block', textAlign: 'center' }}>
+                BUY {rank.name}
+              </a>
             </div>
           ))}
         </div>
       </section>
 
-      <footer style={{ textAlign: 'center', padding: 35, color: '#8da4c8' }}>
-        <p>© 2026 LexturaSMP. All rights reserved.</p>
-        <a href={DISCORD_URL} style={{ color: '#37b7ff' }}>Join our Discord</a>
+      <section id="join" className="section">
+        <div className="join">
+          <h2 style={{ color: '#42bdff' }}>JOIN LEXTURASMP</h2>
+          <p style={{ color: '#a6bfdf' }}>Java & Bedrock players are welcome!</p>
+          <button className="btn primary" onClick={copyIP}>
+            {copied ? 'COPIED!' : 'COPY SERVER IP'}
+          </button>
+          <p style={{ marginTop: 20, fontSize: 18 }}>{SERVER_IP}</p>
+          <a className="btn secondary" href={DISCORD_URL}>JOIN OUR DISCORD</a>
+        </div>
+      </section>
+
+      <section id="faq" className="section">
+        <h2>FAQ</h2>
+        <div className="rank">
+          <h3>How do I buy a rank?</h3>
+          <p style={{ color: '#a6bfdf' }}>Choose your rank and click Buy. You will be redirected to our Discord.</p>
+          <h3>Can Java and Bedrock players join?</h3>
+          <p style={{ color: '#a6bfdf' }}>Yes! Both Java and Bedrock players are welcome.</p>
+        </div>
+      </section>
+
+      <footer className="footer">
+        © 2026 LexturaSMP • All rights reserved.
       </footer>
     </div>
   )
 }
-
