@@ -6,8 +6,14 @@ const DISCORD_URL = 'https://discord.gg/HAkg5a6cK'
 
 const ranks = [
   { name: 'VIP', price: '₱50', color: '#37bfff', icon: '⚡', perks: ['Exclusive VIP rank', 'Special rewards', 'VIP perks'] },
-  { name: 'ELITE', price: '₱100', color: '#8b70ff', icon: '💎', perks: ['Elite rank', 'Better rewards', 'Exclusive perks'] },
-  { name: 'LEGEND', price: '₱200', color: '#ffc857', icon: '👑', perks: ['Legend rank', 'Premium rewards', 'Special privileges'] },
+  { name: 'VIP+', price: '₱75', color: '#50d9ff', icon: '💠', perks: ['VIP+ rank', 'Extra rewards', 'Exclusive perks'] },
+  { name: 'MVP', price: '₱85', color: '#8b70ff', icon: '💎', perks: ['MVP rank', 'Special rewards', 'MVP perks'] },
+  { name: 'MVP+', price: '₱95', color: '#b58cff', icon: '🔮', perks: ['MVP+ rank', 'Better rewards', 'Exclusive perks'] },
+  { name: 'ELITE', price: '₱115', color: '#ffc857', icon: '👑', perks: ['Elite rank', 'Premium rewards', 'Elite perks'] },
+  { name: 'ELITE+', price: '₱125', color: '#ff9d42', icon: '🔥', perks: ['Elite+ rank', 'Extra rewards', 'Special privileges'] },
+  { name: 'LEXTURA', price: '₱145', color: '#ff4f91', icon: '⚔️', perks: ['Lextura rank', 'Legendary rewards', 'Exclusive privileges'] },
+  { name: 'LEXTURA+', price: '₱150', color: '#ff70d4', icon: '🌌', perks: ['Lextura+ rank', 'Premium rewards', 'Special privileges'] },
+  { name: 'CUSTOM RANK', price: '₱160', color: '#55ff9a', icon: '✨', perks: ['Custom rank', 'Custom name and style', 'Special privileges'] },
 ]
 
 export default function App() {
