@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 
 const SERVER_IP = 'Lexturasmp.minevex.site'
@@ -17,9 +18,6 @@ const ranks = [
 
 export default function App() {
   const [copied, setCopied] = useState(false)
-  const [selectedRank, setSelectedRank] = useState(null)
-  const [payment, setPayment] = useState('')
-  const [checkout, setCheckout] = useState(false)
 
   async function copyIP() {
     try {
@@ -29,18 +27,6 @@ export default function App() {
     } catch {
       alert('Server IP: ' + SERVER_IP)
     }
-  }
-
-  function openPayment(rank) {
-    setSelectedRank(rank)
-    setPayment('')
-    setCheckout(false)
-  }
-
-  function closePayment() {
-    setSelectedRank(null)
-    setPayment('')
-    setCheckout(false)
   }
 
   return (
@@ -154,17 +140,11 @@ export default function App() {
 
         .rank h3 { font-size: 38px; margin: 20px 0; }
 
-        .secure {
-          color: #c58aff;
-          font-size: 19px;
-          font-weight: bold;
-          margin: 28px 0;
-        }
-
         .price {
           font-size: 30px;
           font-weight: bold;
           margin: 18px 0;
+          color: #c58aff;
         }
 
         .rank ul {
@@ -186,24 +166,6 @@ export default function App() {
           margin-right: 13px;
         }
 
-        .buy {
-          width: 100%;
-          padding: 17px;
-          background: #211c29;
-          border: 1px solid #51465d;
-          color: white;
-          border-radius: 13px;
-          font-size: 20px;
-          font-weight: bold;
-          cursor: pointer;
-          margin-top: 15px;
-        }
-
-        .buy:hover {
-          background: #7540a1;
-          border-color: #c58aff;
-        }
-
         .join {
           text-align: center;
           background: #171020;
@@ -219,125 +181,12 @@ export default function App() {
           color: #92839e;
         }
 
-        .overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,.85);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 15px;
-          z-index: 20;
-          overflow-y: auto;
-        }
-
-        .modal {
-          width: 100%;
-          max-width: 470px;
-          background: #17131e;
-          border: 1px solid #60417b;
-          border-radius: 20px;
-          padding: 28px;
-          position: relative;
-          margin: auto;
-        }
-
-        .modal h2 {
-          text-align: center;
-          color: #d8adff;
-          font-size: 25px;
-        }
-
-        .payment-brand {
-          text-align: center;
-          font-size: 25px;
-          font-weight: 900;
-          letter-spacing: 3px;
-          color: #b875ed;
-          margin: 15px 0 8px;
-        }
-
-        .payment-subtitle {
-          text-align: center;
-          color: #999;
-          font-size: 12px;
-          letter-spacing: 2px;
-        }
-
-        .close {
-          position: absolute;
-          right: 18px;
-          top: 15px;
-          background: transparent;
-          border: 0;
-          color: white;
-          font-size: 25px;
-          cursor: pointer;
-        }
-
-        .payment-option {
-          display: block;
-          width: 100%;
-          padding: 20px;
-          margin: 13px 0;
-          background: #211a2a;
-          color: white;
-          border: 1px solid #4a365c;
-          border-radius: 12px;
-          cursor: pointer;
-          text-align: center;
-          font-weight: bold;
-        }
-
-        .payment-option.active {
-          border: 2px solid #bd7cff;
-          background: #38234b;
-        }
-
-        .pay {
-          width: 100%;
-          background: #9149c8;
-          color: white;
-          border: 0;
-          padding: 17px;
-          border-radius: 10px;
-          font-size: 17px;
-          font-weight: bold;
-          cursor: pointer;
-          margin-top: 20px;
-        }
-
-        .pay:disabled { opacity: .4; cursor: not-allowed; }
-
-        .checkout-box {
-          background: #0e0d12;
-          padding: 20px;
-          border-radius: 12px;
-          margin-top: 20px;
-          text-align: center;
-        }
-
-        .checkout-price {
-          font-size: 34px;
-          color: #8be37d;
-          font-weight: bold;
-          margin: 15px;
-        }
-
-        .notice {
-          color: #c6b3d7;
-          font-size: 13px;
-          line-height: 1.7;
-          text-align: center;
-        }
-
         @media(max-width:600px) {
           .nav { flex-direction: column; gap: 15px; }
           .links { gap: 13px; font-size: 13px; justify-content: center; }
           .hero { padding: 60px 5%; }
           .section { padding: 45px 5%; }
           .rank { padding: 25px; }
-          .modal { padding: 22px; }
         }
       `}</style>
 
@@ -383,24 +232,12 @@ export default function App() {
             <div className="rank" key={rank.name}>
               <div className="category">{rank.category}</div>
               <h3>{rank.name}</h3>
-              <div className="secure">SECURE CHECKOUT</div>
               <div className="price">₱{rank.price}</div>
               <ul>
                 {rank.perks.map(perk => (
                   <li key={perk}>{perk}</li>
                 ))}
               </ul>
-              <button
-                type="button"
-                className="buy"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  openPayment(rank)
-                }}
-              >
-                BUY {rank.name}
-              </button>
             </div>
           ))}
         </div>
@@ -428,112 +265,16 @@ export default function App() {
       <section id="faq" className="section">
         <h2>FAQ</h2>
         <div className="rank">
-          <h3>How do I buy a rank?</h3>
-          <p>Choose a rank and click BUY NOW.</p>
-          <h3>What payment methods are available?</h3>
-          <p>GCash and Maya.</p>
+          <h3>How do I get a rank?</h3>
+          <p>Contact the LexturaSMP staff through Discord.</p>
+          <h3>Can Java and Bedrock players join?</h3>
+          <p>Yes! Both Java and Bedrock players are welcome.</p>
         </div>
       </section>
 
       <footer className="footer">
         © 2026 LexturaSMP. All rights reserved.
       </footer>
-
-      {selectedRank && (
-        <div className="overlay" onClick={closePayment}>
-          <div
-            className="modal"
-            onClick={e => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="close"
-              onClick={closePayment}
-            >
-              ×
-            </button>
-
-            {!checkout ? (
-              <>
-                <div className="payment-brand">LEXTURASMP</div>
-                <p className="payment-subtitle">SECURE PAYMENT GATEWAY</p>
-                <h2>LEXTURASMP PAYMENT</h2>
-
-                <p style={{textAlign:'center', color:'#c6b3d7'}}>
-                  {selectedRank.name} RANK
-                </p>
-
-                <div className="checkout-box">
-                  <p>ORDER TOTAL</p>
-                  <div className="checkout-price">
-                    ₱{selectedRank.price.toFixed(2)}
-                  </div>
-                </div>
-
-                <h3 style={{textAlign:'center', marginTop:25}}>
-                  SELECT PAYMENT
-                </h3>
-
-                {['GCash', 'Maya'].map(method => (
-                  <button
-                    type="button"
-                    key={method}
-                    className={
-                      'payment-option ' +
-                      (payment === method ? 'active' : '')
-                    }
-                    onClick={() => setPayment(method)}
-                  >
-                    {method}
-                  </button>
-                ))}
-
-                <button
-                  type="button"
-                  className="pay"
-                  disabled={!payment}
-                  onClick={() => setCheckout(true)}
-                >
-                  PAY NOW
-                </button>
-              </>
-            ) : (
-              <>
-                <div className="payment-brand">LEXTURASMP</div>
-                <p className="payment-subtitle">OFFICIAL PAYMENT PORTAL</p>
-                <h2>PAYMENT DETAILS</h2>
-
-                <p style={{textAlign:'center',color:'#c6b3d7'}}>
-                  {selectedRank.name} - {payment}
-                </p>
-
-                <div className="checkout-box">
-                  <p>SEND EXACTLY</p>
-                  <div className="checkout-price">
-                    ₱{selectedRank.price.toFixed(2)}
-                  </div>
-                  <p>Payment provider checkout</p>
-                </div>
-
-                <p className="notice" style={{marginTop:20}}>
-                  Payment gateway connection is required to generate
-                  your real payment QR code and reference number.
-                  No payment has been made yet.
-                </p>
-
-                <button
-                  type="button"
-                  className="pay"
-                  onClick={() => setCheckout(false)}
-                >
-                  BACK TO PAYMENT METHODS
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   )
-                    }
-
+}
